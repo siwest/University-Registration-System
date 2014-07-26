@@ -112,7 +112,7 @@ class TimeSlot(models.Model):
     time = models.CharField(max_length=20)
 
     def __unicode__(self):
-        return self.day + ": " + self.time
+        return "(" + self.day[:3] + ": " + self.time + ")"
 
 class Section(models.Model):
     course = models.ForeignKey(Course)

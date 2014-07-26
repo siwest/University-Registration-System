@@ -5,20 +5,13 @@
 </head>
 <body>
 
-<form>
-	<span id="department_list">
-		<select id="department">
-			<option> -- Select Department -- </option>
-				{% for department in department_list %}
-					<option value={{ department.id }}> {{ department.name }} </option>
-				{% endfor%}
-		</select>
-	</span>
-
-
-	<span id="course_list"></span>
-	<span id="section_list"></span>
-</form>
+<div id="course_selection">
+	<form>
+		<span id="department_list">	</span>
+		<span id="course_list"></span>
+		<span id="section_list"></span>
+	</form>
+</div>
 
 <div id="student_list">
 </div>
@@ -30,21 +23,25 @@
 </script>
 
 <script type="text/javascript">
+
+	$("#department_list").load("/registration/departments/");
+
 	$("#department_list").change(function() {
-	  $("#course_list").load("/registration/courses/" + $("select#department").val());
-	  $("#section_list").html("");
-	  $("#student_list").html("");
+		$("#section_list").html("");
+		$("#student_list").html("");
+		$("#course_list").html("");
+		$("#course_list").load("/registration/courses/" + $("select#department").val());
 	});
 
 	$("#course_list").change(function() {
-	  $("#section_list").load("/registration/sections/" + $("select#course").val());
-	  $("#student_list").html("");
+		$("#section_list").html("");
+	 	$("#student_list").html("");
+	 	$("#section_list").load("/registration/sections/" + $("select#course").val());
 	});
 
 	$("#section_list").change(function() {
-	  $("#student_list").load("/registration/students/" + $("select#section").val());
+		$("#student_list").load("/registration/students/" + $("select#section").val());
 	});
-
 
 </script>
 
