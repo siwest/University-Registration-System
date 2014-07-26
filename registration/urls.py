@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^courses/(?P<department_id>\d+)$', views.course_list, name='course_list'),
     url(r'^sections/(?P<course_id>\d+)$', views.section_list, name='section_list'),
     url(r'^students/(?P<section_id>\d+)$', views.student_list, name='student_list'),
+    url(r'^student/$', views.student_section, name='student_section'),
 )

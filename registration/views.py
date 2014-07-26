@@ -21,7 +21,7 @@ def index(request):
 def class_list(request):
     department_list = Department.objects.order_by('code')
     course_list = Course.objects.order_by('number')
-    context = { 'department_list': department_list, 
+    context = { 'department_list': department_list,
                 'course_list': course_list, }
     return render(request, 'registration/class_list.html', context)
 
@@ -47,3 +47,8 @@ def student_list(request, section_id):
     student_list = get_list_or_404(Student.objects.order_by('last_name','first_name'), section=section)
     context = { 'student_list': student_list, }
     return render(request, 'registration/student_list.html', context)
+
+def student_section(request):
+    student_section = Student.objects
+    context = { 'student_section': student_section }
+    return render(request, 'registration/student_section.html', context)
