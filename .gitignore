@@ -1,5 +1,5 @@
 ###OSX###
-.DB_Store
+.DS_Store
 
 ###SQLite3###
 *.sqlite3
