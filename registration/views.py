@@ -32,13 +32,13 @@ def department_list(request):
 
 def course_list(request, department_id):
     department = get_object_or_404(Department, pk=department_id)
-    course_list = get_list_or_404(Course.order_by('number'), department=department)
+    course_list = get_list_or_404(Course.objects.order_by('number'), department=department)
     context = { 'course_list': course_list, }
     return render(request, 'registration/course_list.html', context)
 
 def section_list(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
-    section_list = get_list_or_404(Section.order_by('number'), course=course)
+    section_list = get_list_or_404(Section.objects.order_by('number'), course=course)
     context = { 'section_list': section_list, }
     return render(request, 'registration/section_list.html', context)
 
