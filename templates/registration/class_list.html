@@ -27,18 +27,20 @@
 	$("#department_list").load("/registration/departments/");
 
 	$("#department_list").change(function() {
-	  $("#course_list").load("/registration/courses/" + $("select#department").val());
-	  $("#section_list").html("");
-	  $("#student_list").html("");
+		$("#section_list").html("");
+		$("#student_list").html("");
+		$("#course_list").html("");
+		$("#course_list").load("/registration/courses/" + $("select#department").val());
 	});
 
 	$("#course_list").change(function() {
-	  $("#section_list").load("/registration/sections/" + $("select#course").val());
-	  $("#student_list").html("");
+		$("#section_list").html("");
+	 	$("#student_list").html("");
+	 	$("#section_list").load("/registration/sections/" + $("select#course").val());
 	});
 
 	$("#section_list").change(function() {
-	  $("#student_list").load("/registration/students/" + $("select#section").val());
+		$("#student_list").load("/registration/students/" + $("select#section").val());
 	});
 
 </script>
