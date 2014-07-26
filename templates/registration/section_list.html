@@ -1,6 +1,11 @@
 <select id="section">
 	<option> -- Select Section -- </option>
 	{% for section in section_list %}
-	<option value={{ section.id }}> Section: {{ section.number }} </option>
+	<option value={{ section.id }}>
+	{{ section.number }}: {{section.faculty.staff.last_name}} - 
+	{% for time_slot in section.time_slot.all %}
+		{{time_slot}} -
+	{% endfor%}
+	(Location: {{section.location.building}}-{{section.location.room}}) </option>
 	{% endfor%}
 </select>
