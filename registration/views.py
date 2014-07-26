@@ -26,24 +26,24 @@ def class_list(request):
     return render(request, 'registration/class_list.html', context)
 
 def department_list(request):
-    department_list = Department.objects.order_by('code')
+    department_list = Department.objects.order_by('name')
     context = { 'department_list': department_list, }
     return render(request, 'registration/base.html', context)
 
 def course_list(request, department_id):
     department = get_object_or_404(Department, pk=department_id)
-    course_list = get_list_or_404(Course, department=department)
+    course_list = get_list_or_404(Course.order_by('number'), department=department)
     context = { 'course_list': course_list, }
     return render(request, 'registration/course_list.html', context)
 
 def section_list(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
-    section_list = get_list_or_404(Section, course=course)
+    section_list = get_list_or_404(Section.order_by('number'), course=course)
     context = { 'section_list': section_list, }
     return render(request, 'registration/section_list.html', context)
 
 def student_list(request, section_id):
     section = get_object_or_404(Section, pk=section_id)
-    student_list = get_list_or_404(Student, section=section)
+    student_list = get_list_or_404(Student.objects.order_by('last_name','first_name'), section=section)
     context = { 'student_list': student_list, }
     return render(request, 'registration/student_list.html', context)
