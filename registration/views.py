@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 
 # Create your views here.
 from django.http import HttpResponse
 
-from registration.models import Student
+from registration.models import Student, Department, Course, Section
 
 # def index(request):
 #     return HttpResponse("Welcome to the student registration index.")
@@ -17,3 +17,33 @@ def index(request):
 
 # def studentregistration(request, student_id):
 #     return HttpResponse("You're looking at student registration %s." % student_id)
+
+def class_list(request):
+    department_list = Department.objects.order_by('code')
+    course_list = Course.objects.order_by('number')
+    context = { 'department_list': department_list, 
+                'course_list': course_list, }
+    return render(request, 'registration/class_list.html', context)
+
+def department_list(request):
+    department_list = Department.objects.order_by('code')
+    context = { 'department_list': department_list, }
+    return render(request, 'registration/base.html', context)
+
+def course_list(request, department_id):
+    department = get_object_or_404(Department, pk=department_id)
+    course_list = get_list_or_404(Course, department=department)
+    context = { 'course_list': course_list, }
+    return render(request, 'registration/course_list.html', context)
+
+def section_list(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    section_list = get_list_or_404(Section, course=course)
+    context = { 'section_list': section_list, }
+    return render(request, 'registration/section_list.html', context)
+
+def student_list(request, section_id):
+    section = get_object_or_404(Section, pk=section_id)
+    student_list = get_list_or_404(Student, section=section)
+    context = { 'student_list': student_list, }
+    return render(request, 'registration/student_list.html', context)

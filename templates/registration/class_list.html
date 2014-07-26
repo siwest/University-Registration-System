@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>New Jersey Institute of Technology</title>
+</head>
+<body>
+
+<form>
+	<span id="department_list">
+		<select id="department">
+			<option> -- Select Department -- </option>
+				{% for department in department_list %}
+					<option value={{ department.id }}> {{ department }} </option>
+				{% endfor%}
+		</select>
+	</span>
+
+
+	<span id="course_list"></span>
+	<span id="section_list"></span>
+</form>
+
+<div id="student_list">
+</div>
+
+</body>
+
+<script type="text/javascript">
+    document.write("\<script src='//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js' type='text/javascript'>\<\/script>");
+</script>
+
+<script type="text/javascript">
+	$("#department_list").change(function() {
+	  $("#course_list").load("/registration/courses/" + $("select#department").val());
+	});
+
+	$("#course_list").change(function() {
+	  $("#section_list").load("/registration/sections/" + $("select#course").val());
+	});
+
+	$("#section_list").change(function() {
+	  $("#student_list").load("/registration/students/" + $("select#section").val());
+	});
+
+
+</script>
+
+</html>
