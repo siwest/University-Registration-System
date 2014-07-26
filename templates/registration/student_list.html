@@ -1,5 +1,14 @@
-<ul id="students">
+<table id="students">
+	<th>Name</th>
+	<th>ID/SSN</th>
+	<th>Major</th>
+	<th>Class/Year</th>
 	{% for student in student_list %}
-	<li> {{ student.last_name }}, {{ student.first_name }} </li>
+	<tr>
+		<td>{{ student.last_name }}, {{ student.first_name }}</td>
+		<td>{{ student.ssn }}</td>
+		<td>{{ student.major }}</td> 
+		<td>{{ student.year }}</td>
+	</tr> 
 	{% endfor%}
-</ul>
+</table>
