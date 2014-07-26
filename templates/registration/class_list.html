@@ -32,10 +32,13 @@
 <script type="text/javascript">
 	$("#department_list").change(function() {
 	  $("#course_list").load("/registration/courses/" + $("select#department").val());
+	  $("#section_list").html("");
+	  $("#student_list").html("");
 	});
 
 	$("#course_list").change(function() {
 	  $("#section_list").load("/registration/sections/" + $("select#course").val());
+	  $("#student_list").html("");
 	});
 
 	$("#section_list").change(function() {
