@@ -28,7 +28,7 @@ def class_list(request):
 def department_list(request):
     department_list = Department.objects.order_by('name')
     context = { 'department_list': department_list, }
-    return render(request, 'registration/base.html', context)
+    return render(request, 'registration/department_list.html', context)
 
 def course_list(request, department_id):
     department = get_object_or_404(Department, pk=department_id)
