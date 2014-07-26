@@ -10,7 +10,7 @@
 		<select id="department">
 			<option> -- Select Department -- </option>
 				{% for department in department_list %}
-					<option value={{ department.id }}> {{ department }} </option>
+					<option value={{ department.id }}> {{ department.name }} </option>
 				{% endfor%}
 		</select>
 	</span>
