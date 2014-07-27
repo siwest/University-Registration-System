@@ -35,10 +35,15 @@ $("#add_section_button").hide();
 
 	$("#add_section_button").click(
 		function() {
-			$(".add_class").load("/registration/student_add_section/" + $("#ssn").val() + "/" + $("#section").val());
-			$(".current_registration").load("/registration/student/" + $("#ssn").val());
-			// $(".add_class").fadeIn("slow", $(".add_class").load("/registration/find_section/"));
+			$.get("/registration/student_add_section/" + $("#ssn").val() + "/" + $("#section").val());
+			$("#section_list").html("");
+			$("#course_list").html("");
+			$("#department_list").load("/registration/departments/");
+			$("#add_section_button").hide();
 
+			//TODO: Make this work reliably without repeating the following line
+			$(".current_registration").load("/registration/student/" + $("#ssn").val());
+			$(".current_registration").load("/registration/student/" + $("#ssn").val());
 		}
 		);
 

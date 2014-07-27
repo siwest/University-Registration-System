@@ -30,6 +30,9 @@
 		$("input:checked").each( function() {
 			$.get("/registration/student_drop_section/" + $("#ssn").val() + "/" + $(this).val());
 		});
+
+		//TODO: Make this work reliably without repeating the following line
+		$(".current_registration").load("/registration/student/" + $("#ssn").val());
 		$(".current_registration").load("/registration/student/" + $("#ssn").val());
 	}
 		);
