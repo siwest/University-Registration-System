@@ -60,6 +60,14 @@ def student_add_section(request, student_ssn, section_id):
     context = { 'student': student, 'section': section }
     return render(request, 'registration/student_add_section.html', context)
 
+def student_drop_section(request, student_ssn, section_id):
+    student = get_object_or_404(Student, ssn = student_ssn)
+    section = get_object_or_404(Section, pk = section_id)
+    section.student.remove(student)
+    context = { 'student': student, 'section': section }
+    return render(request, 'registration/student_drop_section.html', context)
+
+
 def add_drop(request):
     context = { }
     return render(request, 'registration/add_drop.html', context)
