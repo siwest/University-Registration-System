@@ -4,15 +4,19 @@
 	<div class="complete_form">
 		<div class="student_box">
 			<h3>Enter student id (SSN) to view registered classes and register for new classes</h3>
-			<form >
-			  Student ID/SSN: <input type="text" name="id/snn"><br>
+			<form action="/your-ssn/" method="post">
+			  <label for="your_ssn">Student ID/SSN:</label>
+			  <input id="your_ssn" type="text" value="{{ student.ssn }}"><br>
 			  <input type="submit" value="Submit">
 			</form>
 		<div>
 		<div class="current_registration">
 			<h3>Student registered for classes</h3>
 			<form>
-
+				{% for section in student.section_set.all %}
+					<input type="checkbox" name="your_class" value = "{{ section.id }}">{{ section }}<br>
+				{% endfor%}
+				<input type="submit" value="Delete">
 			</form>
 		</div>
 		<div class="add_classes">

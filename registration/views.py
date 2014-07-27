@@ -48,7 +48,7 @@ def student_list(request, section_id):
     context = { 'student_list': student_list, }
     return render(request, 'registration/student_list.html', context)
 
-def student_section(request):
-    student_section = Student.objects
-    context = { 'student_section': student_section }
+def student_section(request, student_ssn):
+    student = get_object_or_404(Student, ssn = student_ssn)
+    context = { 'student': student }
     return render(request, 'registration/student_section.html', context)
