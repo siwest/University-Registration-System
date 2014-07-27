@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<h1>Student Registration</h1>
+	<div class="complete_form">
+		<div class="student_box">
+			<h3>Enter your Student ID number to view registered classes and register for new classes</h3>
+			<form>
+			  <label for="ssn">Student ID:</label>
+			  <input id="ssn" type="text" value="">
+			  <input id="submit_ssn" type="button" value="Get Classes">
+			</form>
+		<div>
+
+		<div class="current_registration">
+		</div>
+
+		<div class="add_class">
+		</div>
+	</div>
+	
+
+</html>
+
+<style type="text/css">
+	.complete_form {
+		padding-left: 15px;
+	}
+	.current_registration, .add_classes {
+	    padding-top: 50px;
+	}
+</style>
+
+
+
+
+<script type="text/javascript">
+    document.write("\<script src='//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js' type='text/javascript'>\<\/script>");
+</script>
+
+<script type="text/javascript">
+
+	$(".current_registration").html("");
+
+	$("#submit_ssn").click(
+		function() {
+			$(".current_registration").load("/registration/student/" + $("#ssn").val());
+			$(".add_class").load("/registration/find_section/");
+
+		}
+		);
+
+</script>
+
+
+

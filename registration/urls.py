@@ -11,5 +11,7 @@ urlpatterns = patterns('',
     url(r'^sections/(?P<course_id>\d+)$', views.section_list, name='section_list'),
     url(r'^students/(?P<section_id>\d+)$', views.student_list, name='student_list'),
     url(r'^student/$', views.student_section, name='student_section'),
+    url(r'^add_drop/$', views.add_drop, name='add_drop'),
+    url(r'^find_section/$', views.find_section, name='find_section'),
     url(r'^student/(?P<student_ssn>\d+)$', views.student_section, name='student_section'),
 )

@@ -1,0 +1,30 @@
+<h3>Add classes</h3>
+<form>
+	<span id="department_list">
+	<select id="department">
+		<option> -- Select Department -- </option>
+		{% for department in department_list %}
+			<option value={{ department.id }}> {{ department.name }} </option>
+		{% endfor%}
+	</select>
+	</span>
+	<span id="course_list"></span>
+	<span id="section_list"></span>
+</form>
+<input type="button" value="Add">
+
+<script type="text/javascript">
+$("#department_list").load("/registration/departments/");
+
+	$("#department_list").change(function() {
+		$("#section_list").html("");
+		$("#course_list").html("");
+		$("#course_list").load("/registration/courses/" + $("select#department").val());
+	});
+
+	$("#course_list").change(function() {
+		$("#section_list").html("");
+	 	$("#section_list").load("/registration/sections/" + $("select#course").val());
+	});
+
+</script>

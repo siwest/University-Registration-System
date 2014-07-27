@@ -1,80 +1,23 @@
-<!DOCTYPE html>
-<html>
-	<h1>Student Registration</h1>
-	<div class="complete_form">
-		<div class="student_box">
-			<h3>Enter student id (SSN) to view registered classes and register for new classes</h3>
-			<form action="/your-ssn/" method="post">
-			  <label for="your_ssn">Student ID/SSN:</label>
-			  <input id="your_ssn" type="text" value="{{ student.ssn }}"><br>
-			  <input type="submit" value="Submit">
-			</form>
-		<div>
-		<div class="current_registration">
-			<h3>Student registered for classes</h3>
-			<form>
-				{% for section in student.section_set.all %}
-					<input type="checkbox" name="your_class" value = "{{ section.id }}">{{ section }}<br>
-				{% endfor%}
-				<input type="submit" value="Delete">
-			</form>
-		</div>
-		<div class="add_classes">
-			<h3>Add classes</h3>
-			<form>
-				<span id="department_list">
-					<select id="department">
-						<option> -- Select Department -- </option>
-							{% for department in department_list %}
-								<option value={{ department.id }}> {{ department.name }} </option>
-							{% endfor%}
-					</select>
-				</span>
-				<span id="course_list"></span>
-				<span id="section_list"></span>
-			</form>
-			<input type="submit" value="Register">
-
-
-		</div>
-	</div>
-	
-
-</html>
-
-<style type="text/css">
-	.complete_form {
-		padding-left: 15px;
-	}
-	.current_registration, .add_classes {
-	    padding-top: 50px;
-	}
-</style>
-
-
-
-
-<script type="text/javascript">
-    document.write("\<script src='//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js' type='text/javascript'>\<\/script>");
-</script>
-
-<script type="text/javascript">
-
-	$("#department_list").load("/registration/departments/");
-
-	$("#department_list").change(function() {
-		$("#section_list").html("");
-		$("#course_list").html("");
-		$("#course_list").load("/registration/courses/" + $("select#department").val());
-	});
-
-	$("#course_list").change(function() {
-		$("#section_list").html("");
-	 	$("#section_list").load("/registration/sections/" + $("select#course").val());
-	});
-
-
-</script>
-
-
-
+<h3>Student registered for classes</h3>
+<form>
+	<table>
+	<th></th><th>Course</th><th>Section</th><th>Instructor</th><th>Time</th><th>Location</th>
+	{% for section in student.section_set.all %}
+	<tr>
+		<td><input type="checkbox" name="class_section" value="{{ section.id }}"></td>
+		<td>{{section.course.department.code}}{{section.course.number}}</td>
+		<td>{{ section.number }}</td>
+		<td>{{section.faculty.staff.last_name}}</td>
+		<td>
+			{% for time_slot in section.time_slot.all %}
+				{{time_slot}}<br/>
+			{% endfor%}
+		</td>
+		<td>
+			{{section.location.building}}-{{section.location.room}}
+		</td>
+	</tr>
+	{% endfor%}
+	</table>
+	<input type="button" value="Drop">
+</form>

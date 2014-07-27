@@ -52,3 +52,13 @@ def student_section(request, student_ssn):
     student = get_object_or_404(Student, ssn = student_ssn)
     context = { 'student': student }
     return render(request, 'registration/student_section.html', context)
+
+def add_drop(request):
+    context = { }
+    return render(request, 'registration/add_drop.html', context)
+
+def find_section(request):
+    context = {}
+    return render(request, 'registration/find_section.html', context)
+
+
