@@ -150,8 +150,8 @@ class Section(models.Model):
         #     raise ValidationError('Teaching Assistant hours exceeded for course TA requirement')
 
         # # enforce no more than two time_slots
-        # if (self.time_slot.count() > 2):
-        #     raise ValidationError('Classes may be held no more than two times per week')
+        if (self.time_slot.count() > 2):
+            raise ValidationError('Classes may be held no more than two times per week')
 
         # enforce room capacity
         if (self.location.capacity < self.max_enrollment):
