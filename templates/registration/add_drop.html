@@ -15,7 +15,9 @@
 		</div>
 
 		<div class="add_class">
+
 		</div>
+
 	</div>
 	
 
@@ -45,6 +47,16 @@
 		function() {
 			$(".current_registration").load("/registration/student/" + $("#ssn").val());
 			$(".add_class").load("/registration/find_section/");
+
+		}
+		);
+
+	$("#add_section_button").click(
+		function() {
+			alert("clicked");
+			$(".add_class").load("/registration/student_add_section/" + $("#ssn").val() + "/" + $("#section").val());
+			$(".current_registration").load("/registration/student/" + $("#ssn").val());
+			// $(".add_class").fadeIn("slow", $(".add_class").load("/registration/find_section/"));
 
 		}
 		);

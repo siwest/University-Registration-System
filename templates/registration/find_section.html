@@ -11,10 +11,12 @@
 	<span id="course_list"></span>
 	<span id="section_list"></span>
 </form>
-<input type="button" value="Add">
+<input id="add_section_button" type="button" value="Add">
 
 <script type="text/javascript">
 $("#department_list").load("/registration/departments/");
+
+$("#add_section_button").hide();
 
 	$("#department_list").change(function() {
 		$("#section_list").html("");
@@ -26,5 +28,18 @@ $("#department_list").load("/registration/departments/");
 		$("#section_list").html("");
 	 	$("#section_list").load("/registration/sections/" + $("select#course").val());
 	});
+
+	$("#section_list").change(function() {
+		$("#add_section_button").show();
+	});
+
+	$("#add_section_button").click(
+		function() {
+			$(".add_class").load("/registration/student_add_section/" + $("#ssn").val() + "/" + $("#section").val());
+			$(".current_registration").load("/registration/student/" + $("#ssn").val());
+			// $(".add_class").fadeIn("slow", $(".add_class").load("/registration/find_section/"));
+
+		}
+		);
 
 </script>
