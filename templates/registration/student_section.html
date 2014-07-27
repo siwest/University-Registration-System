@@ -1,12 +1,12 @@
-<h3>Student registered for classes</h3>
+<h3>{{student.first_name}} {{student.last_name}} is registered for: </h3>
 <form>
 	<table>
-	<th></th><th>Course</th><th>Section</th><th>Instructor</th><th>Time</th><th>Location</th>
+	<th></th><th>Course</th><th>Credits</th><th>Instructor</th><th>Time</th><th>Location</th><th>Section</th>
 	{% for section in student.section_set.all %}
 	<tr>
 		<td><input type="checkbox" name="class_section" value="{{ section.id }}"></td>
 		<td>{{section.course.department.code}}{{section.course.number}}</td>
-		<td>{{ section.number }}</td>
+		<td>{{section.course.credit}}</td>
 		<td>{{section.faculty.staff.last_name}}</td>
 		<td>
 			{% for time_slot in section.time_slot.all %}
@@ -16,6 +16,7 @@
 		<td>
 			{{section.location.building}}-{{section.location.room}}
 		</td>
+		<td>{{ section.number }}</td>
 	</tr>
 	{% endfor%}
 	</table>
