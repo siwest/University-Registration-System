@@ -61,6 +61,10 @@ class Student(models.Model):
     def __unicode__(self):
         return self.first_name + " " + self.last_name + " (" + self.ssn + ")"
 
+    def clean(self):
+        if (self.section_set.count() > 6):
+            raise ValidationError('Students cannot register for more than 6 classes')
+
 
 class TeachingAssistantStatus(models.Model):
     status = models.CharField(max_length=20, default="Full Time")
@@ -136,6 +140,10 @@ class Section(models.Model):
         # enforce max enrollment
         if (self.student.count() > self.max_enrollment):
             raise ValidationError('Class section is full')
+
+        # enforce max number of sections a student can enroll in
+        for student in self.student.all():
+            student.clean()
 
         # # enforce course ta_requirement
         # if (self.course.ta_requirement_set.object.count > self.teaching_assistant.hours):
