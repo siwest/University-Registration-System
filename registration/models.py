@@ -134,8 +134,8 @@ class Section(models.Model):
         #     raise ValidationError('Faculty member course load exceeded')
 
         # enforce max enrollment
-        # if (self.student_set.count() > self.max_enrollment):
-        #     raise ValidationError('Class section is full')
+        if (self.student.count() > self.max_enrollment):
+            raise ValidationError('Class section is full')
 
         # # enforce course ta_requirement
         # if (self.course.ta_requirement_set.object.count > self.teaching_assistant.hours):
