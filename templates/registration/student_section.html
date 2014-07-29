@@ -1,10 +1,10 @@
 <h3>{{student.first_name}} {{student.last_name}} is registered for: </h3>
 <form>
-	<table>
+	<table class="table">
 	<th></th><th>Course</th><th>Name</th><th>Credits</th><th>Instructor</th><th>Time</th><th>Location</th><th>Section</th>
 	{% for section in student.section_set.all %}
 	<tr>
-		<td><input type="checkbox" name="class_section" value="{{ section.id }}"></td>
+		<td><input class="checkbox" type="checkbox" name="class_section" value="{{ section.id }}"></td>
 		<td>{{section.course.department.code}}{{section.course.number}}</td>
 		<td>{{section.course.name}}</td>
 		<td>{{section.course.credit}}</td>
@@ -21,7 +21,7 @@
 	</tr>
 	{% endfor%}
 	</table>
-	<input id="drop_section_button" type="button" value="Drop">
+	<input class="btn" id="drop_section_button" type="button" value="Drop Courses">
 </form>
 
 <script type="text/javascript">

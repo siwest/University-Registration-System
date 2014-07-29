@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>New Jersey Institute of Technology</title>
-</head>
-<body>
+{% extends "admin/base_site.html" %}
 
+{% block navbar %}
+<div class="row-fluid">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    {% block pretitle %}{% endblock %}
+                    {% block content_title %}<a class="brand">NJIT - Course Section Information</a>{% endblock %}
+                    {% block object-tools %}{% endblock %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{%block content%}
 <div id="course_selection">
 	<form>
 		<span id="department_list">	</span>
@@ -16,7 +24,7 @@
 <div id="student_list">
 </div>
 
-</body>
+
 
 <script type="text/javascript">
     document.write("\<script src='//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js' type='text/javascript'>\<\/script>");
@@ -45,4 +53,4 @@
 
 </script>
 
-</html>
+{%endblock%}
