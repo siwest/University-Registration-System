@@ -55,8 +55,13 @@ def student_section(request, student_ssn):
 def student_add_section(request, student_ssn, section_id):
     student = get_object_or_404(Student, ssn = student_ssn)
     section = get_object_or_404(Section, pk = section_id)
-    section.student.add(student)
-    context = { 'student': student, 'section': section }
+    if (section.student.count() >= section.max_enrollment):
+        pass
+    elif (student.section_set.count() >= 6):
+        pass
+    else:
+        section.student.add(student)
+    context = { 'student': student, 'section': section}
     return render(request, 'registration/student_add_section.html', context)
 
 def student_drop_section(request, student_ssn, section_id):
