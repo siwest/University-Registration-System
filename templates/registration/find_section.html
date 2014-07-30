@@ -1,5 +1,5 @@
 <h3>Add classes</h3>
-<form>
+<form class="form form-inline">
 	<span id="department_list">
 	<select id="department">
 		<option> -- Select Department -- </option>
@@ -10,8 +10,9 @@
 	</span>
 	<span id="course_list"></span>
 	<span id="section_list"></span>
+	<span><input class="btn" id="add_section_button" type="button" value="Add"></span>
 </form>
-<input id="add_section_button" type="button" value="Add">
+
 
 <script type="text/javascript">
 $("#department_list").load("/registration/departments/");

@@ -1,13 +1,26 @@
-<!DOCTYPE html>
-<html>
-	<h1>Student Registration</h1>
+{% extends "admin/base_site.html" %}
+
+{% block navbar %}
+<div class="row-fluid">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    {% block pretitle %}{% endblock %}
+                    {% block content_title %}<a class="brand">NJIT - Student Registration</a>{% endblock %}
+                    {% block object-tools %}{% endblock %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block content%}
+
 	<div class="complete_form">
+<p>Enter your Student ID number to view registered classes and register for new classes:</p>
 		<div class="student_box">
-			<h3>Enter your Student ID number to view registered classes and register for new classes</h3>
-			<form>
+			<form class="form-inline">
 			  <label for="ssn">Student ID:</label>
 			  <input id="ssn" type="text" value="">
-			  <input id="submit_ssn" type="button" value="Get Classes">
+			  <input  class="btn btn-primary" id="submit_ssn" type="button" value="Sign in">
 			</form>
 		<div>
 
@@ -21,7 +34,6 @@
 	</div>
 	
 
-</html>
 
 <style type="text/css">
 	.complete_form {
@@ -54,5 +66,5 @@
 
 </script>
 
-
+{% endblock %}
 
