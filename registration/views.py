@@ -11,9 +11,8 @@ from registration.models import Student, Department, Course, Section
 
 
 def index(request):
-    latest_student_list = Student.objects.order_by('-last_name')[:31]
-    output = ', '.join([s.last_name for s in latest_student_list])
-    return HttpResponse(output)
+    context = {}
+    return render(request, 'registration/index.html', context)
 
 # def studentregistration(request, student_id):
 #     return HttpResponse("You're looking at student registration %s." % student_id)
