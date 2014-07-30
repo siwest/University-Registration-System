@@ -17,11 +17,11 @@
 	<div class="complete_form">
 <p>Enter your Student ID number to view registered classes and register for new classes:</p>
 		<div class="student_box">
-			<form class="form-inline">
+			<div class="form-inline">
 			  <label for="ssn">Student ID:</label>
 			  <input id="ssn" type="text" value="">
 			  <input  class="btn btn-primary" id="submit_ssn" type="button" value="Sign in">
-			</form>
+			</div>
 		<div>
 
 		<div class="current_registration">
@@ -55,12 +55,13 @@
 
 	$(".current_registration").html("");
 
-	$("#submit_ssn").click(
-		function() {
+	var login_with_ssn = function() {
 			$(".current_registration").load("/registration/student/" + $("#ssn").val());
 			$(".add_class").load("/registration/find_section/");
-		}
-		);
+		};
+
+	$("#ssn").submit(login_with_ssn);
+	$("#submit_ssn").click(login_with_ssn);
 
 
 
