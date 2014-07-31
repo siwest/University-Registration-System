@@ -1,11 +1,26 @@
 <select id="section">
 	<option> -- Select Section -- </option>
 	{% for section in section_list %}
-	<option value={{ section.id }}>
-	{{ section.number }}: {{section.faculty.staff.last_name}} - 
-	{% for time_slot in section.time_slot.all %}
-		{{time_slot}} -
-	{% endfor%}
-	(Location: {{section.location.building}}-{{section.location.room}}) </option>
+		
+		{% if section.is_open %}
+			<option value={{ section.id }}>
+		{% else %}
+			<option value="closed">
+		{% endif %}
+
+		{% if not section.is_open %}
+		CLOSED: 
+		{% endif %}
+
+		{{ section.number }}: {{section.faculty.staff.last_name}} - 
+		
+		{% for time_slot in section.time_slot.all %}
+			{{time_slot}} -
+		{% endfor%}
+
+		(Location: {{section.location.building}}-{{section.location.room}}) 
+		{% if not section.is_open %}
+		{% endif %}
+		</option>
 	{% endfor%}
 </select>

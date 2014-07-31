@@ -23,15 +23,20 @@ $("#add_section_button").hide();
 		$("#section_list").html("");
 		$("#course_list").html("");
 		$("#course_list").load("/registration/courses/" + $("select#department").val());
+		$("#add_section_button").hide();
 	});
 
 	$("#course_list").change(function() {
 		$("#section_list").html("");
 	 	$("#section_list").load("/registration/sections/" + $("select#course").val());
+	 	$("#add_section_button").hide();
 	});
 
 	$("#section_list").change(function() {
-		$("#add_section_button").show();
+		
+		if ($("#section").val() != "closed") {
+			$("#add_section_button").show();
+		}
 	});
 
 	$("#add_section_button").click(
