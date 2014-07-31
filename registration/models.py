@@ -128,6 +128,12 @@ class Section(models.Model):
     student = models.ManyToManyField(Student)
     teaching_assistant = models.ForeignKey(TeachingAssistant)
 
+    def is_open(self):
+        if self.student.count() < self.max_enrollment:
+            return True
+        else:
+            return False
+
     def __unicode__(self):
         return self.course.department.code + " " + self.course.number + " - Section: " + self.number
 
@@ -142,8 +148,8 @@ class Section(models.Model):
             raise ValidationError('Class section is full')
 
         # enforce max number of sections a student can enroll in
-        for student in self.student.all():
-            student.clean()
+        # for student in self.student.all():
+        #     student.clean()
 
         # # enforce course ta_requirement
         # if (self.course.ta_requirement_set.object.count > self.teaching_assistant.hours):
